@@ -1,0 +1,12 @@
+<ul>
+    @for(t of toys(); track $index){
+        <li>
+            <h3>{{t.name}}</h3>
+            <ul>
+                <li>ID: <strong>{{t.toyId}}</strong></li>
+                <li>Opis: <strong>{{t.description}}</strong></li>
+                <li>Cena: <strong>{{t.price}} rsd</strong></li>
+            </ul>
+        </li>
+    }
+</ul>
