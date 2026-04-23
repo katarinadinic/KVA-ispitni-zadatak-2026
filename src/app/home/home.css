@@ -1,0 +1,36 @@
+.toy-card {
+    width: 16%;
+}
+
+.toy-card mat-card-actions {
+    margin-top: auto;
+}
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card-content {
+    margin-top: 10px;
+    padding: 12px;
+}
+
+.card-content mat-card-title {
+    padding-bottom: 15px;
+}
+
+.loading-card {
+    max-width: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loading-img{
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
+}

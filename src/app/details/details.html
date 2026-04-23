@@ -1,2 +1,44 @@
-<p>details works!</p>
-<p>ID: {{toyId()}}</p>
+@if(toy()) {
+<div class="details-wrapper">
+    <mat-card class="details-card">
+        <mat-card-content>
+            <img [src]="utils.getImageUrl(toy()!)" class="details-img">
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="details-card">
+        <mat-card-content>
+            <h1>{{toy()?.name}}</h1>
+            <mat-list>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>stars</mat-icon>
+                    <div matListItemTitle>Opis:</div>
+                    <div matListItemLine>{{toy()!.description}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>child_care</mat-icon>
+                    <div matListItemTitle>Namenjeno:</div>
+                    <div matListItemLine>{{toy()!.targetGroup}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>today</mat-icon>
+                    <div matListItemTitle>Datum proizvodnje:</div>
+                    <div matListItemLine>{{utils.formatDate(toy()!.productionDate)}}</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>local_atm</mat-icon>
+                    <div matListItemTitle>Cena:</div>
+                    <div matListItemLine>{{toy()?.price}} rsd</div>
+                </mat-list-item>
+            </mat-list>
+            <ul>
+                <li>ID: {{toy()?.toyId}}</li>
+                <li>Naziv: {{toy()?.name}}</li>
+                <li>Opis: {{toy()?.description}}</li>
+                <li>Ciljana grupa: {{toy()?.targetGroup}}</li>
+                <li>Datum proizvodnje: {{utils.formatDate(toy()!.productionDate)}}</li>
+                <li>Cena: {{toy()?.price}}</li>
+            </ul>
+        </mat-card-content>
+    </mat-card>
+</div>
+}

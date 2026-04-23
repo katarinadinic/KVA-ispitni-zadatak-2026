@@ -3,24 +3,26 @@ import { ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { ToyModel } from '../../models/toy.model';
 import { Utils } from '../utils';
-import { MatCardModule } from '@angular/material/card';
-import {MatListModule} from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-details',
-  imports: [MatCardModule, MatListModule,MatIconModule],
+  imports: [],
   templateUrl: './details.html',
   styleUrl: './details.css',
 })
 export class Details {
-  toy = signal<ToyModel | null>(null)
+  toy = signal<ToyModel[] | null>(null)
 
-  constructor(route: ActivatedRoute, public utils: Utils) {
+  constructor(route: ActivatedRoute) {
     route.params.subscribe(params => {
       const toyId = params['toyId']
-      axios.get(`https://toy.pequla.com/api/toy/${toyId}`)
-        .then(rsp => this.toy.set(rsp.data))
+      axios.get<ToyModel[]>(`https://toy.pequla.com/api/toy/${toyId}`)
+        .then(rsp => {
+          const sorted = rsp.data.sort((t1, t2) => {
+            return new Date(t1.productionDate).getTime() - new Date(t2.productionDate).getTime()
+          })
+          this.toy.set(sorted)
+        })
     })
   }
 }

@@ -3,6 +3,7 @@ import { RouterOutlet, RouterLinkWithHref } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     RouterLinkWithHref,
     MatButtonModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatIconModule
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'
