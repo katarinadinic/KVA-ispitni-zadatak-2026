@@ -3,6 +3,8 @@ export interface UserModel {
     lastName: string,
     email: string,
     password: string,
-    group: string
+    group: string,
+    address: string,
+    phone: string
     orders: any[]
 }

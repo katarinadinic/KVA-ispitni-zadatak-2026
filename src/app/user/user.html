@@ -1,0 +1,37 @@
+<mat-card class="login-card">
+    <mat-card-header>
+        <h1>User details</h1>
+    </mat-card-header>
+    <mat-card-content>
+        <div>
+            <mat-form-field class="full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput type="text" [(ngModel)]="activeUser!.firstName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" [(ngModel)]="activeUser!.lastName">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" [(ngModel)]="activeUser!.email">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Address</mat-label>
+                <input matInput type="text" [(ngModel)]="activeUser!.address">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="text" [(ngModel)]="activeUser!.phone">
+            </mat-form-field>
+            <mat-form-field class="full-width">
+                <mat-label>Group</mat-label>
+                <mat-select [(ngModel)]="activeUser!.group">
+                    @for (grupa of groups; track groups) {
+                    <mat-option [value]="grupa.value">{{grupa.viewValue}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </mat-card-content>
+</mat-card>
