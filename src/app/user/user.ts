@@ -39,4 +39,8 @@ export class User {
       return
     }
   }
+
+  updateUser() {
+    AuthService.updateActiveUser(this.activeUser!)
+  }
 }
