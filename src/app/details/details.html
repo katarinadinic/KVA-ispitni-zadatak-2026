@@ -31,6 +31,14 @@
                 </mat-list-item>
             </mat-list>
         </mat-card-content>
+        @if(authService.getActiveUser()) {
+        <mat-card-actions>
+
+            <a [routerLink]="`/details/${toy()?.toyId}/purchase`" matButton>
+                <mat-icon fontIcon="shopping_cart" />Buy now
+            </a>
+        </mat-card-actions>
+        }
     </mat-card>
 </div>
 }
