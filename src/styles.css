@@ -7,3 +7,7 @@
     display: flex;
     flex-wrap: nowrap;
 }
+
+.full-width {
+    width: 100%;
+}

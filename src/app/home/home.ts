@@ -17,7 +17,6 @@ export class Home {
   toys = signal<ToyModel[]>([])
 
   constructor(public utils: Utils) {
-    localStorage.setItem('time', JSON.stringify({ t: new Date().toISOString() }))
     axios.get('https://toy.pequla.com/api/toy')
       .then(rsp => this.toys.set(rsp.data))
   }
