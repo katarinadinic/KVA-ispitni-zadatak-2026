@@ -42,5 +42,6 @@ export class User {
 
   updateUser() {
     AuthService.updateActiveUser(this.activeUser!)
+    alert('User updated successfuly')
   }
 }
