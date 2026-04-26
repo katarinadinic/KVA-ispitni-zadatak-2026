@@ -7,8 +7,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import axios from 'axios';
 import { Loading } from '../loading/loading';
+import { Alerts } from '../alerts';
 
 interface TargetGroup {
   value: string;
@@ -34,6 +34,9 @@ export class User {
     { value: 'dečak', viewValue: 'Dečak' },
     { value: 'devojčica', viewValue: 'Devojčica' },
   ];
+  oldPassword = ''
+  newPassword = ''
+  passRepeat = ''
 
   constructor(private router: Router) {
     if (!AuthService.getActiveUser()) {
@@ -44,6 +47,33 @@ export class User {
 
   updateUser() {
     AuthService.updateActiveUser(this.activeUser!)
-    alert('User updated successfuly')
+    Alerts.success('User updated successfuly')
+  }
+
+  updatePassword() {
+    if(this.oldPassword != this.activeUser?.password) {
+      Alerts.error('Invalid old password')
+      return
+    }
+
+    if(this.newPassword.length < 6) {
+      Alerts.error('Password must be at least 6 characters long')
+      return
+    }
+
+    if(this.newPassword != this.passRepeat) {
+      Alerts.error('Passwords do not match')
+      return
+    }
+
+    if(this.newPassword == this.activeUser.password) {
+      Alerts.error('New password cannot be the same as the old one')
+      return
+    }
+
+    AuthService.updateActiveUserPassword(this.newPassword)
+    Alerts.success('Password updated successfuly')
+    AuthService.logout()
+    this.router.navigate(['/login'])
   }
 }
