@@ -1,0 +1,22 @@
+.container { padding: 20px; }
+.w-100 { width: 100%; }
+.mb-4 { margin-bottom: 2rem; }
+
+h1 { font-size: 24px;}
+h3 { text-align: left; font-weight: bold; color: var(--mat-sys-primary); }
+
+
+.badge {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.arrived { background-color: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
+.canceled { background-color: #ffebee; color: #c62828; border: 1px solid #c62828; }
+
+
+mat-card {
+    border-radius: 10px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}

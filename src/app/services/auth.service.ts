@@ -71,7 +71,7 @@ export class AuthService {
         localStorage.removeItem(ACTIVE)
     }
 
-    static createOrder( order: Partial<OrderModel>, toyId: number) {
+    static createOrder(order: Partial<OrderModel>, toyId: number) {
         order.toyId = toyId
         order.state = 'ordered'
         order.createdAt = new Date().toISOString()
@@ -80,10 +80,46 @@ export class AuthService {
 
         for (let u of users) {
             if (u.email === localStorage.getItem(ACTIVE)) {
-                if(!u.orders) u.orders = []
+                if (!u.orders) u.orders = []
                 u.orders.push(order as OrderModel)
             }
         }
         localStorage.setItem(USERS, JSON.stringify(users))
+    }
+
+    static getOrderByState(state: 'ordered' | 'arrived' | 'cancelled') {
+        const user = this.getActiveUser()
+        if (!user || !user.orders) return [];
+        return user.orders.filter((o: OrderModel) => o.state === state);
+    }
+
+    static cancelOrder(createdAt: string) {
+        const users = this.getUsers();
+        const activeEmail = localStorage.getItem(ACTIVE);
+        for (let u of users) {
+            if (u.email === activeEmail && u.orders) {
+                for (let o of u.orders) {
+                    if (o.state === 'ordered' && o.createdAt === createdAt) {
+                        o.state = 'cancelled';
+                    }
+                }
+            }
+        }
+        localStorage.setItem(USERS, JSON.stringify(users));
+    }
+
+    static payOrders() {
+        const users = this.getUsers();
+        const activeEmail = localStorage.getItem(ACTIVE);
+        for (let u of users) {
+            if (u.email === activeEmail && u.orders) {
+                for (let o of u.orders) {
+                    if (o.state === 'ordered') {
+                        o.state = 'arrived';
+                    }
+                }
+            }
+        }
+        localStorage.setItem(USERS, JSON.stringify(users));
     }
 }
