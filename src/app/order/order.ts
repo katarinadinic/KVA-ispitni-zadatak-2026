@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
 import { ToyModel } from '../../models/toy.model';
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ToyService } from '../services/toy.service';
+import { ToyService } from '../../services/toy.service';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormField, MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Alerts } from '../alerts';
 
 @Component({

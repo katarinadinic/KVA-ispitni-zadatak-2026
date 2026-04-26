@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Loading } from '../loading/loading';
 import { Alerts } from '../alerts';
-import { ToyService } from '../services/toy.service';
+import { ToyService } from '../../services/toy.service';
 import { ToyModel, ToyType } from '../../models/toy.model';
 
 interface TargetGroup {

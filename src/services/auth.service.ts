@@ -1,5 +1,5 @@
-import { OrderModel } from "../../models/order.model";
-import { UserModel } from "../../models/user.model";
+import { OrderModel } from "../models/order.model";
+import { UserModel } from "../models/user.model";
 
 const USERS = 'users'
 const ACTIVE = 'active'

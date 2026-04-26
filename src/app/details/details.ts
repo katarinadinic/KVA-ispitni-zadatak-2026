@@ -5,9 +5,9 @@ import { Utils } from '../utils';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { MatButtonModule } from '@angular/material/button';
-import { ToyService } from '../services/toy.service';
+import { ToyService } from '../../services/toy.service';
 import { Loading } from '../loading/loading';
 
 @Component({
