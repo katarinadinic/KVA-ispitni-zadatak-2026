@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { Loading } from '../loading/loading';
 import { Alerts } from '../alerts';
+import { ToyService } from '../services/toy.service';
 
 interface TargetGroup {
   value: string;
@@ -29,6 +30,7 @@ interface TargetGroup {
 })
 export class User {
   public activeUser = AuthService.getActiveUser()
+  toys = signal<string[]>([])
   groups: TargetGroup[] = [
     { value: 'svi', viewValue: 'Svi' },
     { value: 'dečak', viewValue: 'Dečak' },
@@ -43,37 +45,50 @@ export class User {
       router.navigate(['/login'])
       return
     }
+
+    /* ToyService.getToyById()
+    .then(rsp => this.toys.set(rsp.data)) */
+  }
+
+  getAvatarUrl() {
+    return `https://ui-avatars.com/api/?name=${this.activeUser?.firstName}+${this.activeUser?.lastName}`
   }
 
   updateUser() {
-    AuthService.updateActiveUser(this.activeUser!)
-    Alerts.success('User updated successfuly')
+    Alerts.confirm('Are you sure you want to update user info?',
+      () => {
+        AuthService.updateActiveUser(this.activeUser!)
+        Alerts.success('User updated successfuly')
+      })
   }
 
   updatePassword() {
-    if(this.oldPassword != this.activeUser?.password) {
-      Alerts.error('Invalid old password')
-      return
-    }
+    Alerts.confirm('Are you sure you want to change the password?',
+      () => {
+        if (this.oldPassword != this.activeUser?.password) {
+          Alerts.error('Invalid old password')
+          return
+        }
 
-    if(this.newPassword.length < 6) {
-      Alerts.error('Password must be at least 6 characters long')
-      return
-    }
+        if (this.newPassword.length < 6) {
+          Alerts.error('Password must be at least 6 characters long')
+          return
+        }
 
-    if(this.newPassword != this.passRepeat) {
-      Alerts.error('Passwords do not match')
-      return
-    }
+        if (this.newPassword != this.passRepeat) {
+          Alerts.error('Passwords do not match')
+          return
+        }
 
-    if(this.newPassword == this.activeUser.password) {
-      Alerts.error('New password cannot be the same as the old one')
-      return
-    }
+        if (this.newPassword == this.activeUser.password) {
+          Alerts.error('New password cannot be the same as the old one')
+          return
+        }
 
-    AuthService.updateActiveUserPassword(this.newPassword)
-    Alerts.success('Password updated successfuly')
-    AuthService.logout()
-    this.router.navigate(['/login'])
+        AuthService.updateActiveUserPassword(this.newPassword)
+        Alerts.success('Password updated successfuly')
+        AuthService.logout()
+        this.router.navigate(['/login'])
+      })
   }
 }
