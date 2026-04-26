@@ -50,6 +50,8 @@
                 <mat-icon>payments</mat-icon> Pay All
             </button>
         </mat-card-actions>
+        } @else {
+            <mat-card-content>No orders in cart</mat-card-content>
         }
     </mat-card>
 
@@ -148,9 +150,5 @@
             </table>
         </mat-card-content>
     </mat-card>
-    }@else {
-    <mat-card>
-        <mat-card-content>No orders in cart</mat-card-content>
-    </mat-card>
-    }
+}
 </div>

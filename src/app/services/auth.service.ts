@@ -122,4 +122,26 @@ export class AuthService {
         }
         localStorage.setItem(USERS, JSON.stringify(users));
     }
+
+    static deleteArrivedOrder(createdAt: string) {
+        const users = this.getUsers();
+        const activeEmail = localStorage.getItem(ACTIVE);
+        for (let u of users) {
+            if (u.email === activeEmail && u.orders) {
+                u.orders = u.orders.filter(o => !(o.state === 'arrived' && o.createdAt === createdAt));
+            }
+        }
+        localStorage.setItem(USERS, JSON.stringify(users));
+    }
+
+    static existsByEmail(email: string): boolean {
+        const users = this.getUsers();
+        return users.some(u => u.email === email);
+    }
+
+    static createUser(userData: UserModel) {
+        const users = this.getUsers();
+        users.push(userData);
+        localStorage.setItem(USERS, JSON.stringify(users));
+    }
 }

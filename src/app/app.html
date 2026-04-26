@@ -8,6 +8,9 @@
         <mat-icon fontIcon="info" />About
     </a>
     @if(authService.getActiveUser()) {
+    <a routerLink="/cart" mat-button>
+        <mat-icon fontIcon="shopping_cart" /> Cart
+    </a>
     <a routerLink="/user" matButton>
         <mat-icon fontIcon="perm_identity" />Account
     </a>

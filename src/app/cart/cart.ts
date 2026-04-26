@@ -44,7 +44,12 @@ export class Cart {
     });
   }
 
-  deleteArrived(order: OrderModel) { }
+  deleteArrived(order: OrderModel) {
+    Alerts.confirm(`Delete ${order.toyName} from history?`, () => {
+      AuthService.deleteArrivedOrder(order.createdAt);
+      this.reloadComponent();
+    });
+  }
 
   payAll() {
     Alerts.confirm(`Confirm payment of ${this.calculateTotal()} RSD?`, () => {
