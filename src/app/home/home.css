@@ -21,3 +21,7 @@
 .card-content mat-card-title {
     padding-bottom: 15px;
 }
+
+.home-button {
+    padding-left: 10px;
+}

@@ -12,7 +12,7 @@
                 <mat-icon fontIcon="menu_open" />Details
             </a>
             @if(authService.getActiveUser()) {
-                <a [routerLink]="`/details/${t.toyId}/purchase`" matButton>
+                <a [routerLink]="`/details/${t.toyId}/order`" matButton class="home-button">
                 <mat-icon fontIcon="shopping_cart" />Buy now
             </a>
             }

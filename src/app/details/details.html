@@ -11,32 +11,32 @@
             <mat-list>
                 <mat-list-item>
                     <mat-icon matListItemIcon>stars</mat-icon>
-                    <div matListItemTitle>Description:</div>
+                    <div matListItemTitle>Description</div>
                     <div matListItemLine>{{toy()!.description}}</div>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon matListItemIcon>sports_esports</mat-icon>
-                    <div matListItemTitle>Toy Type:</div>
+                    <div matListItemTitle>Toy Type</div>
                     <div matListItemLine>{{toy()!.type.name}}</div>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon matListItemIcon>child_care</mat-icon>
-                    <div matListItemTitle>Age:</div>
+                    <div matListItemTitle>Age</div>
                     <div matListItemLine>{{toy()!.ageGroup.name}}</div>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon matListItemIcon>girl</mat-icon>
-                    <div matListItemTitle>Target Group:</div>
+                    <div matListItemTitle>Target Group</div>
                     <div matListItemLine>{{toy()!.targetGroup}}</div>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon matListItemIcon>today</mat-icon>
-                    <div matListItemTitle>Production Date:</div>
+                    <div matListItemTitle>Production Date</div>
                     <div matListItemLine>{{utils.formatDate(toy()!.productionDate)}}</div>
                 </mat-list-item>
                 <mat-list-item>
                     <mat-icon matListItemIcon>local_atm</mat-icon>
-                    <div matListItemTitle>Price:</div>
+                    <div matListItemTitle>Price</div>
                     <div matListItemLine>{{toy()?.price}} rsd</div>
                 </mat-list-item>
             </mat-list>
@@ -44,7 +44,7 @@
         @if(authService.getActiveUser()) {
         <mat-card-actions>
 
-            <a [routerLink]="`/details/${toy()?.toyId}/purchase`" matButton>
+            <a [routerLink]="`/details/${toy()?.toyId}/order`" matButton>
                 <mat-icon fontIcon="shopping_cart" />Buy now
             </a>
         </mat-card-actions>

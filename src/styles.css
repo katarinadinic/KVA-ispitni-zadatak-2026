@@ -18,6 +18,17 @@
     margin-right: auto;
 }
 
+.flex-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.flex-card {
+    max-width: 460px;
+}
+
 .mat-swal-popup {
     font-family: Roboto, "Helvetica Neue", sans-serif;
     border-radius: 16px;
