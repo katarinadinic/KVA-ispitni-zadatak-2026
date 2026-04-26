@@ -9,7 +9,7 @@
         </mat-card-content>
         <mat-card-actions>
             <a [routerLink]="`/details/${t.toyId}`" matButton>
-                <mat-icon fontIcon="menu_open" />Detalji
+                <mat-icon fontIcon="menu_open" />Details
             </a>
             @if(authService.getActiveUser()) {
                 <a [routerLink]="`/details/${t.toyId}/purchase`" matButton>
@@ -22,13 +22,5 @@
 </div>
 }
 @else {
-<mat-card class="loading-card">
-    <img src="/loading.gif" class="loading-img">
-    <mat-card-content>
-        <h3>Podaci se učitavaju</h3>
-        <p>Molimo sačekajte...</p>
-        <!-- <mat-card-title><strong>Podaci se učitavaju</strong></mat-card-title>
-        <mat-card-subtitle>Molimo sačekajte...</mat-card-subtitle> -->
-    </mat-card-content>
-</mat-card>
+    <app-loading />
 }

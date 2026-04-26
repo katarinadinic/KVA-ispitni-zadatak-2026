@@ -7,10 +7,11 @@ import { Utils } from '../utils';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../services/auth.service';
 import { ToyService } from '../services/toy.service';
+import { Loading } from '../loading/loading';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, MatCardModule, MatButtonModule, MatIconModule],
+  imports: [RouterLink, MatCardModule, MatButtonModule, MatIconModule, Loading],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

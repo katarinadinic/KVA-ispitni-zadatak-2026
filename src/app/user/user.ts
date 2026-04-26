@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import axios from 'axios';
+import { Loading } from '../loading/loading';
 
 interface TargetGroup {
   value: string;
@@ -21,16 +22,17 @@ interface TargetGroup {
     MatButtonModule,
     MatIconModule,
     FormsModule,
-    MatSelectModule],
+    MatSelectModule,
+    Loading],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
 export class User {
   public activeUser = AuthService.getActiveUser()
   groups: TargetGroup[] = [
-    {value: 'svi', viewValue: 'Svi'},
-    {value: 'dečak', viewValue: 'Dečak'},
-    {value: 'devojčica', viewValue: 'Devojčica'},
+    { value: 'svi', viewValue: 'Svi' },
+    { value: 'dečak', viewValue: 'Dečak' },
+    { value: 'devojčica', viewValue: 'Devojčica' },
   ];
 
   constructor(private router: Router) {
