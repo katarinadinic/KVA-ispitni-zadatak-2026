@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { Loading } from '../loading/loading';
 import { Alerts } from '../alerts';
 import { ToyService } from '../services/toy.service';
+import { ToyModel, ToyType } from '../../models/toy.model';
 
 interface TargetGroup {
   value: string;
@@ -30,12 +31,8 @@ interface TargetGroup {
 })
 export class User {
   public activeUser = AuthService.getActiveUser()
-  toys = signal<string[]>([])
-  groups: TargetGroup[] = [
-    { value: 'svi', viewValue: 'Svi' },
-    { value: 'dečak', viewValue: 'Dečak' },
-    { value: 'devojčica', viewValue: 'Devojčica' },
-  ];
+  favorites = signal<ToyType[]>([])
+
   oldPassword = ''
   newPassword = ''
   passRepeat = ''
@@ -46,8 +43,8 @@ export class User {
       return
     }
 
-    /* ToyService.getToyById()
-    .then(rsp => this.toys.set(rsp.data)) */
+    ToyService.getToyType()
+    .then(rsp=> this.favorites.set(rsp.data))
   }
 
   getAvatarUrl() {

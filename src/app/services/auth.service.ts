@@ -8,11 +8,11 @@ export class AuthService {
         const baseUser: UserModel = {
             email: 'user@example.com',
             password: 'user123',
-            group: 'svi',
             firstName: 'John',
             lastName: 'Doe',
             address: 'Danijelova 32',
             phone: '0653093267',
+            favorites: 'Slagalica',
             orders: []
         }
         if (localStorage.getItem(USERS) == null) {
@@ -50,7 +50,7 @@ export class AuthService {
                 u.lastName = newUserData.lastName
                 u.address = newUserData.address
                 u.phone = newUserData.phone
-                u.group = newUserData.group
+                u.favorites = newUserData.favorites
             }
         }
         localStorage.setItem(USERS, JSON.stringify(users))

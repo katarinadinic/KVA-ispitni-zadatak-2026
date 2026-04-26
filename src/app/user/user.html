@@ -1,4 +1,4 @@
-@if(activeUser !== null){
+@if(favorites().length > 0 ){
 <div class="user-wrapper">
     <mat-card class="user-card">
         <mat-card-header>
@@ -27,10 +27,12 @@
                     <input matInput type="text" [(ngModel)]="activeUser!.phone">
                 </mat-form-field>
                 <mat-form-field class="full-width">
-                    <mat-label>Group</mat-label>
-                    <mat-select [(ngModel)]="activeUser!.group">
-                        @for (grupa of groups; track groups) {
-                        <mat-option [value]="grupa.value">{{grupa.viewValue}}</mat-option>
+                    <mat-label>Favorite type of toy</mat-label>
+                    <mat-select [(ngModel)]="activeUser!.favorites">
+                        @for (favorit of favorites(); track favorit.typeId) {
+                        <mat-option [value]="favorit.name">
+                            {{ favorit.name }}
+                        </mat-option>
                         }
                     </mat-select>
                 </mat-form-field>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ToyModel } from "../../models/toy.model";
+import { ToyModel, ToyType } from "../../models/toy.model";
 
 const client = axios.create({
     baseURL: 'https://toy.pequla.com/api',
@@ -20,4 +20,9 @@ export class ToyService {
     static async getToyById(id: number) {
         return await client.get<ToyModel>('/toy/' + id)
     }
+
+    static async getToyType() {
+        return await client.get<ToyType[]>('/type')
+    }
+
 }
