@@ -7,15 +7,19 @@ import { MatIconModule } from '@angular/material/icon';
 import { OrderModel } from '../../models/order.model';
 import { Alerts } from '../alerts';
 import { MatButtonModule } from '@angular/material/button';
+import Swal from 'sweetalert2';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cart',
   imports: [
+    CommonModule,
     MatCardModule,
     MatTableModule,
     RouterLink,
     MatIconModule,
-    MatButtonModule],
+    MatButtonModule
+  ],
   templateUrl: './cart.html',
   styleUrl: './cart.css',
 })
@@ -58,7 +62,36 @@ export class Cart {
     });
   }
 
-  rateToy(order: OrderModel) { }
+  rateToy(order: OrderModel) {
+    Swal.fire({
+      title: 'Rate ' + order.toyName,
+      html: `
+        <select id="swal-rating" class="swal2-input">
+          <option value="5">⭐⭐⭐⭐⭐ (5)</option>
+          <option value="4">⭐⭐⭐⭐ (4)</option>
+          <option value="3">⭐⭐⭐ (3)</option>
+          <option value="2">⭐⭐ (2)</option>
+          <option value="1">⭐ (1)</option>
+        </select>
+        <textarea id="swal-review" class="swal2-textarea" placeholder="Your comment..."></textarea>
+      `,
+      showCancelButton: true,
+      theme: 'dark',
+      confirmButtonText: 'Submit',
+      preConfirm: () => {
+        return {
+          rating: (document.getElementById('swal-rating') as HTMLSelectElement).value,
+          review: (document.getElementById('swal-review') as HTMLTextAreaElement).value
+        }
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        AuthService.rateOrder(order.createdAt, Number(result.value.rating), result.value.review);
+        Alerts.success("Thank you for your review!");
+        this.reloadComponent();
+      }
+    });
+  }
 
   reloadComponent() {
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {

@@ -50,6 +50,16 @@
         </mat-card-actions>
         }
     </mat-card>
+    @if (toy()?.status) {
+    <li><strong>Status:</strong> <span class="status-badge">{{toy()?.status}}</span></li>
+    }
+
+    @if (toy()?.userReview) {
+    <li class="review-box">
+        <strong>Recenzija korisnika:</strong>
+        <p><em>"{{toy()?.userReview}}"</em></p>
+    </li>
+    }
 </div>
 } @else {
 <app-loading />

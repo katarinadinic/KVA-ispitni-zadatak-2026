@@ -27,8 +27,19 @@
                 </mat-select>
             </mat-form-field>
             <mat-form-field appearance="outline">
-                <mat-label>Production Date</mat-label>
-                <mat-select [ngModel]="selectedDate()" (ngModelChange)="selectedDate.set($event)">
+                <mat-label>From Date</mat-label>
+                <mat-select [ngModel]="fromDate()" (ngModelChange)="fromDate.set($event)">
+                    <mat-option value="all">All Dates</mat-option>
+                    @for (date of getAvailableDates(); track date) {
+                    <mat-option [value]="date">
+                        {{date}}
+                    </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>To Date</mat-label>
+                <mat-select [ngModel]="toDate()" (ngModelChange)="toDate.set($event)">
                     <mat-option value="all">All Dates</mat-option>
                     @for (date of getAvailableDates(); track date) {
                     <mat-option [value]="date">

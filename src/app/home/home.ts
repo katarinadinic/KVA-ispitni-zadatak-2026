@@ -11,8 +11,6 @@ import { Loading } from '../loading/loading';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { of } from 'rxjs';
-import { all } from 'axios';
 
 @Component({
   selector: 'app-home',
@@ -34,6 +32,9 @@ export class Home {
   toys = signal<ToyModel[]>([]);
   favorites = signal<ToyType[]>([]);
   datumi = signal<ToyModel[]>([]);
+
+  fromDate = signal<string>('all');
+  toDate = signal<string>('all');
 
   searchQuery = signal<string>('');
   selectedType = signal<string>('all');
@@ -63,9 +64,9 @@ export class Home {
       const matchType = this.selectedType() === 'all' || t.type.name === this.selectedType();
       const matchTarget = this.selectedTarget() === 'all' || t.targetGroup === this.selectedTarget();
       const matchPrice = t.price <= this.maxPrice();
-      const matchDate = this.selectedDate() === 'all' || t.productionDate === this.selectedDate();
-
-      return matchText && matchType && matchTarget && matchPrice && matchDate;
+      const matchFrom = this.fromDate() === 'all' || t.productionDate >= this.fromDate();
+      const matchTo = this.toDate() === 'all' || t.productionDate <= this.toDate();
+      return matchText && matchType && matchTarget && matchPrice && matchFrom && matchTo;
     });
   });
 

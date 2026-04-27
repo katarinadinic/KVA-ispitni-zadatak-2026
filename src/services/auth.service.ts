@@ -144,4 +144,19 @@ export class AuthService {
         users.push(userData);
         localStorage.setItem(USERS, JSON.stringify(users));
     }
+
+    static rateOrder(createdAt: string, rating: number, review: string) {
+        const users = this.getUsers();
+        const activeEmail = localStorage.getItem(ACTIVE);
+        for (let u of users) {
+            if (u.email === activeEmail && u.orders) {
+                const order = u.orders.find(o => o.createdAt === createdAt);
+                if (order) {
+                    order.rating = rating;
+                    order.review = review;
+                }
+            }
+        }
+        localStorage.setItem(USERS, JSON.stringify(users));
+    }
 }

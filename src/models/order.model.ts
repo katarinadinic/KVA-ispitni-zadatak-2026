@@ -13,5 +13,7 @@ export interface OrderModel {
     note?: string,
     date: string,
     createdAt: string,
+    rating: number,
+    review: string,
     state: 'ordered' | 'arrived' | 'cancelled'
 }
