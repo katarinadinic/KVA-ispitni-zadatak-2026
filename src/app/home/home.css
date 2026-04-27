@@ -25,3 +25,34 @@
 .home-button {
     padding-left: 10px;
 }
+
+.filter-container {
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 35px !important;
+}
+
+.filter-grid mat-form-field {
+  min-width: 200px;
+}
+
+.price-range {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.no-results {
+  width: 100%;
+  text-align: center;
+  padding: 50px;
+  color: #666;
+}

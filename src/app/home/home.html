@@ -1,6 +1,53 @@
+<div class="filter-container">
+    <mat-card class="filter-card">
+        <mat-card-content class="filter-grid">
+            <mat-form-field appearance="outline">
+                <mat-label>Search toys...</mat-label>
+                <input matInput [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)"
+                    placeholder="Name or description">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Category</mat-label>
+                <mat-select [ngModel]="selectedType()" (ngModelChange)="selectedType.set($event)">
+                    <mat-option value="all">All Categories</mat-option>
+                    @for (favorit of favorites(); track favorit.typeId) {
+                    <mat-option [value]="favorit.name">
+                        {{ favorit.name }}
+                    </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Target Group</mat-label>
+                <mat-select [ngModel]="selectedTarget()" (ngModelChange)="selectedTarget.set($event)">
+                    <mat-option value="all">Everyone</mat-option>
+                    <mat-option value="dečak">Boys</mat-option>
+                    <mat-option value="devojčica">Girls</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Production Date</mat-label>
+                <mat-select [ngModel]="selectedDate()" (ngModelChange)="selectedDate.set($event)">
+                    <mat-option value="all">All Dates</mat-option>
+                    @for (date of getAvailableDates(); track date) {
+                    <mat-option [value]="date">
+                        {{date}}
+                    </mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+            <div class="price-range">
+                <label>Max price: {{maxPrice()}} RSD</label>
+                <input type="range" min="0" max="15000" step="500" [ngModel]="maxPrice()"
+                    (ngModelChange)="maxPrice.set($event)">
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
 @if(toys().length > 0){
 <div class="card-wrapper">
-    @for(t of toys(); track $index) {
+    @for(t of filteredToys(); track t.toyId) {
     <mat-card class="toy-card" appearance="outlined">
         <img mat-card-image [src]="utils.getImageUrl(t)" [alt]="t.name">
         <mat-card-content class="card-content">
@@ -12,15 +59,20 @@
                 <mat-icon fontIcon="menu_open" />Details
             </a>
             @if(authService.getActiveUser()) {
-                <a [routerLink]="`/details/${t.toyId}/order`" matButton class="home-button">
+            <a [routerLink]="`/details/${t.toyId}/order`" matButton class="home-button">
                 <mat-icon fontIcon="shopping_cart" />Buy now
             </a>
             }
         </mat-card-actions>
     </mat-card>
+    } @empty {
+    <div class="no-results">
+        <mat-icon>search_off</mat-icon>
+        <p>No toys found for your search.</p>
+    </div>
     }
 </div>
 }
 @else {
-    <app-loading />
+<app-loading />
 }
